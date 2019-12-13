@@ -1,0 +1,46 @@
+* 目的
+
+- 日本語化されたchrome
+- pythonで簡単に
+- 気軽に使える
+
+* 使い方
+
+
+** 起動
+
+#+BEGIN_SRC sh :exports both :results pp
+docker-compose up -d
+#+END_SRC
+
+** 実行
+
+- =./work= が docker上の =home= にあたっているので適当にファイルを用意し下記のように実行する
+
+#+BEGIN_SRC sh :exports both :results pp
+$ docker-compose exec ubuntu bash
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+rotelstift@7aaf2c77b50f:~$ python3 sample2.py
+速報 - Yahoo!ニュース
+rotelstift@7aaf2c77b50f:~$
+#+END_SRC
+
+
+- 自動実行したいなら =docker-compose.yml= の =command= を適当に書き換える =python3 sample2.py= のように。
+
+** 終了
+
+#+BEGIN_SRC sh :exports both :results pp
+docker-compose down
+#+END_SRC
+
+* 参考
+
+- =Dockerfile= は以下からもらってきた
+https://qiita.com/rotelstift/items/7dafcdcae3ca18b65b26
+
+- 軽く読んでみたところおそらくdocker imageのバージョンに依存するところは無いように思う。
+- 一番危ないのは =google-chrome-stable=
+- google-chromeの前提が =ubuntu 18.04= （もしくはそれ以降）になった際に大幅なメンテナンスが必要と思われる
